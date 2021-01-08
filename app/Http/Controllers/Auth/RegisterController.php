@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Mockery\Matcher\HasKey;
 
 class RegisterController extends Controller
 {
@@ -28,9 +29,9 @@ class RegisterController extends Controller
      public function store(Request $request) {
         $this->validate($request, [
             'name' => 'required|max:255',
-            'username' => 'required|max:255',
-            'email' => 'required|email|max:255',
-            'password' => 'required|confirmed',
+            'username' => 'required|max:255|unique:users',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed|min:5',
 
         ]);
 
@@ -41,7 +42,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('successMessage', 'User was sucessfully added!');
     }
 
 }
