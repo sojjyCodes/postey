@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth\RegisterController;
 */
 
 Route::get('/home', [RegisterController::class, 'home'])->name('home');
+Route::get('/', [RegisterController::class, 'home'])->name('home');
 
 Route::get('/dashboard', [RegisterController::class, 'dashboard'])->name('dashboard');
 
