@@ -9,6 +9,18 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
+    public function home() {
+        return view('layouts.home');
+    }
+
+        public function post() {
+        return view('layouts.post');
+    }
+
+        public function dashboard() {
+        return view('layouts.dashboard');
+    }
+
     public function index() {
         return view('auth.register');
     }
@@ -19,9 +31,9 @@ class RegisterController extends Controller
             'username' => 'required|max:255',
             'email' => 'required|email|max:255',
             'password' => 'required|confirmed',
-            
+
         ]);
-      
+
         User::create([
             'name' => $request->name,
             'username' => $request->username,
@@ -31,8 +43,5 @@ class RegisterController extends Controller
 
         return redirect()->route('dashboard');
     }
-    
-    public function dashboard() {
-        return view('layouts.dashboard');
-    }
+
 }

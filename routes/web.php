@@ -14,9 +14,15 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
+Route::get('/home', [RegisterController::class, 'home'])->name('home');
+
+Route::get('/dashboard', [RegisterController::class, 'dashboard'])->name('dashboard');
+
+// Route::get('/posts', [RegisterController::class, 'posts'])->name('posts') ;
+
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
-Route::get('/dashboard', [RegisterController::class, 'dashboard'])->name('dashboard');
+
 
 
 Route::get('/posts', function () {
