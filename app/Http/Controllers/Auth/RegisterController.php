@@ -18,10 +18,6 @@ class RegisterController extends Controller
         return view('layouts.post');
     }
 
-        public function dashboard() {
-        return view('layouts.dashboard');
-    }
-
     public function index() {
         return view('auth.register');
     }
@@ -41,6 +37,8 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        auth()->attempt($request->only('email', 'password'));
 
         return redirect()->route('dashboard')->with('successMessage', 'User was sucessfully added!');
     }
