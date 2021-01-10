@@ -27,7 +27,7 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'username' => 'required|max:255|unique:users',
             'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed|min:5',
+            'password' => 'required|confirmed|min:8',
 
         ]);
 
@@ -40,7 +40,7 @@ class RegisterController extends Controller
 
         auth()->attempt($request->only('email', 'password'));
 
-        return redirect()->route('dashboard')->with('successMessage', 'User was sucessfully added!');
+        return redirect()->route('dashboard')->with('successMessage', 'User was sucessfully registered!');
     }
 
 }
